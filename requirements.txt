@@ -1,0 +1,24 @@
+# AutoHDR - Requirements
+# Install: pip install -r requirements.txt
+
+# Core ML
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Image Processing
+numpy>=1.24.0
+pillow>=10.0.0
+
+# Metrics
+scikit-image>=0.21.0
+
+# Utilities
+tqdm>=4.66.0
+
+# API Server
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+
+# AWS (for data download)
+boto3>=1.28.0
