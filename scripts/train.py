@@ -22,7 +22,6 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from dataset import AutoHDRDataset
-from dataset import PairedAugment
 from model import NAFNet, count_parameters
 
 
@@ -33,16 +32,6 @@ CONFIG = {
     "epochs": 50,           # Training epochs
     "save_every": 10,       # Save checkpoint every N epochs
     "workers": 4,           # DataLoader workers
-
-    # Data augmentation (train only)
-    # NOTE: use only spatial ops so input/target alignment stays valid.
-    "augmentation": {
-        "enabled": True,
-        "crop_size": 512,    # Set to None to disable cropping
-        "hflip_p": 0.5,
-        "vflip_p": 0.0,
-        "rotate90": False,
-    },
 }
 
 
@@ -181,17 +170,7 @@ def main():
     
     # Load data
     print(f"\nLoading data...")
-    aug_cfg = CONFIG.get("augmentation", {})
-    paired_aug = None
-    if aug_cfg.get("enabled", False):
-        paired_aug = PairedAugment(
-            crop_size=aug_cfg.get("crop_size"),
-            hflip_p=aug_cfg.get("hflip_p", 0.5),
-            vflip_p=aug_cfg.get("vflip_p", 0.0),
-            rotate90=aug_cfg.get("rotate90", False),
-        )
-
-    train_data = AutoHDRDataset(base / "data/processed/train", paired_transform=paired_aug)
+    train_data = AutoHDRDataset(base / "data/processed/train")
     val_data = AutoHDRDataset(base / "data/processed/val")
     print(f"Train: {len(train_data)} | Val: {len(val_data)}")
     
