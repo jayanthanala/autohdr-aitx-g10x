@@ -11,7 +11,12 @@ This repository includes:
 
 ---
 
+## Demo Video
+
+YouTube: https://youtu.be/w7kcbpZhnhs
+
 ## Contents
+- [Demo Video](#demo-video)
 - [Quickstart (Web Demo)](#quickstart-web-demo)
 - [Project Structure](#project-structure)
 - [Setup](#setup)
